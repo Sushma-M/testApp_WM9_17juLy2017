@@ -3,7 +3,54 @@
     <wm-top-nav name="topnav" content="topnav"></wm-top-nav>
     <wm-content name="content">
         <wm-left-panel columnwidth="2" name="leftpanel" content="leftnav"></wm-left-panel>
-        <wm-page-content columnwidth="8" paddingleft="15" paddingright="15" name="mainContent">
+        <wm-page-content columnwidth="8" name="mainContent" padding="unset 15px">
+            <wm-livetable formlayout="dialog" name="livetable2">
+                <wm-table gridfirstrowselect="true" editmode="dialog" title="Vacation List" dataset="bind:Variables.HrdbVacationData.dataSet" navigation="Basic" name="table2">
+                    <wm-table-column binding="id" caption="Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" readonly="true"></wm-table-column>
+                    <wm-table-column binding="startDate" caption="Start Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-table-column>
+                    <wm-table-column binding="endDate" caption="End Date" generator="assigned" pcdisplay="true" mobiledisplay="true" type="date"></wm-table-column>
+                    <wm-table-column binding="tenantId" caption="Tenant Id" generator="assigned" pcdisplay="true" mobiledisplay="true" type="integer"></wm-table-column>
+                    <wm-table-column binding="status" caption="Status" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-table-column>
+                    <wm-table-column binding="type" caption="Type" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string"></wm-table-column>
+                    <wm-table-column binding="employee.empId" caption="Emp Id" generator="identity" pcdisplay="true" mobiledisplay="true" type="integer" primary-key="true" related-entity-name="Employee"></wm-table-column>
+                    <wm-table-column binding="employee.firstname" caption="Employee Firstname" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Employee" readonly="true"></wm-table-column>
+                    <wm-table-column binding="employee.lastname" caption="Employee Lastname" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Employee" readonly="true"></wm-table-column>
+                    <wm-table-column binding="employee.street" caption="Employee Street" generator="assigned" pcdisplay="true" mobiledisplay="true" type="string" related-entity-name="Employee" readonly="true"></wm-table-column>
+                    <wm-table-action key="addNewRow" display-name="New" iconclass="wi wi-plus" show="true" class="btn-primary" action="addNewRow()" position="footer" shortcutkey=""></wm-table-action>
+                    <wm-table-row-action key="updaterow" display-name="" title="Edit" iconclass="wi wi-pencil" show="true" class="btn-transparent" action="editRow()"></wm-table-row-action>
+                    <wm-table-row-action key="deleterow" display-name="" title="Delete" iconclass="wi wi-trash" show="true" class="btn-transparent" action="deleteRow()"></wm-table-row-action>
+                </wm-table>
+                <wm-liveform errormessage="" title="Vacation Info" formlayout="dialog" iconclass="wi wi-edit" dataset="bind:Variables.HrdbVacationData.dataSet" captionalign="left" captionposition="top" name="liveform2">
+                    <wm-layoutgrid columns="3" name="layoutgrid2">
+                        <wm-gridrow name="gridrow6">
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn16">
+                                <wm-form-field name="startDate" displayname="Start Date" required="false" show="true" generator="assigned" primary-key="false" key="startDate" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn17">
+                                <wm-form-field name="endDate" displayname="End Date" required="false" show="true" generator="assigned" primary-key="false" key="endDate" type="date" is-related="false" pc-display="true" mobile-display="true" widget="date"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn18">
+                                <wm-form-field name="tenantId" displayname="Tenant Id" required="false" show="true" generator="assigned" primary-key="false" key="tenantId" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true"
+                                    widget="number"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                        <wm-gridrow name="gridrow7">
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn19">
+                                <wm-form-field name="status" displayname="Status" required="false" show="true" generator="assigned" primary-key="false" key="status" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn20">
+                                <wm-form-field name="type" displayname="Type" required="false" show="true" generator="assigned" primary-key="false" key="type" type="string" is-related="false" maxchars="255" pc-display="true" mobile-display="true" widget="text"></wm-form-field>
+                            </wm-gridcolumn>
+                            <wm-gridcolumn columnwidth="4" name="gridcolumn21">
+                                <wm-form-field name="employee" displayname="Employee" required="true" show="true" generator="assigned" primary-key="false" key="employee" type="list" is-related="true" pc-display="true" mobile-display="true" widget="select"></wm-form-field>
+                            </wm-gridcolumn>
+                        </wm-gridrow>
+                    </wm-layoutgrid>
+                    <wm-form-field name="id" displayname="Id" required="true" show="false" generator="identity" primary-key="true" key="id" type="integer" is-related="false" step="0" pc-display="true" mobile-display="true" widget="number"></wm-form-field>
+                    <wm-form-action key="cancel" class="form-cancel btn-secondary" iconclass="wi wi-cancel" action="cancel()" display-name="Cancel" show="true" type="button" update-mode="true"></wm-form-action>
+                    <wm-form-action key="save" class="form-save btn-success" iconclass="wi wi-save" display-name="Save" show="true" type="submit" update-mode="true"></wm-form-action>
+                </wm-liveform>
+            </wm-livetable>
         </wm-page-content>
         <wm-right-panel columnwidth="2" name="rightpanel" content="rightnav"></wm-right-panel>
     </wm-content>
